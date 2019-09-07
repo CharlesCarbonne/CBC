@@ -1,45 +1,22 @@
-import { useRouter } from 'next/router'
-import Markdown from 'react-markdown'
-import Layout from '../../components/MyLayout.js'
+import Layout from '../../components/MyLayout';
+import fetch from 'isomorphic-unfetch';
 
-export default () => {
-  const router = useRouter()
-  return (
-    <Layout>
-      <h1>{router.query.id}</h1>
-      <div className="markdown">
-        <Markdown
-          source={`
-This is our blog post.
-Yes. We can have a [link](/link).
-And we can have a title as well.
+const Post = props => (
+  <Layout>
+    <h1>{props.comic.serieTitle}#{props.comic.issueNumber}</h1>
+    <p>Publisher: {props.comic.publisher}</p>
+  </Layout>
+);
 
-### This is a title
+Post.getInitialProps = async function(context) {
+  const { id } = context.query;
+  console.log(`http://localhost:3001/comics/${id}`)
+  const res = await fetch(`http://localhost:3001/comics/${id}`);
+  const comic = await res.json();
 
-And here's the content.
-      `}
-        />
-      </div>
-      <style jsx global>{`
-        .markdown {
-          font-family: 'Arial';
-        }
+  console.log(`Fetched comic: ${comic.serieTitle}`);
 
-        .markdown a {
-          text-decoration: none;
-          color: blue;
-        }
+  return { comic };
+};
 
-        .markdown a:hover {
-          opacity: 0.6;
-        }
-
-        .markdown h3 {
-          margin: 0;
-          padding: 0;
-          text-transform: uppercase;
-        }
-      `}</style>
-    </Layout>
-  )
-}
+export default Post;

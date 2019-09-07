@@ -5,15 +5,41 @@ import fetch from 'isomorphic-unfetch';
 const Index = props => (
   <Layout>
     <h1>Comics fetched from API</h1>
-    <ul>
+    <style jsx>
+      {`
+          table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+
+          th, td {
+            text-align: left;
+            padding: 8px;
+          }
+
+          tr:nth-child(even) {background-color: #f2f2f2;}
+        
+        `}
+    </style>
+    <table>
+      <tbody>
+      <tr>
+        <th>Titre</th>
+        <th>Numéro</th>
+        <th>Editeur</th>
+      </tr>
       {props.comics.map(comic => (
-        <li key={comic._id}>
-          <Link href="/p/[id]" as={`/p/${comic._id}`}>
-            <a>{comic.serieTitle} #{comic.issueNumber}</a>
-          </Link>
-        </li>
+        <tr key={comic._id}>
+          <td><Link href="/p/[id]" as={`/p/${comic._id}`}>
+            <a>{comic.serieTitle}</a>
+          </Link></td>
+          <td>{comic.issueNumber}</td>
+          <td>{comic.publisher}</td>
+        </tr>
       ))}
-    </ul>
+      </tbody>
+    </table>
+
   </Layout>
 );
 
@@ -29,3 +55,4 @@ Index.getInitialProps = async function() {
 };
 
 export default Index;
+

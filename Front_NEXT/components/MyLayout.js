@@ -8,7 +8,7 @@ const layoutStyle = {
 
 export default function Layout(props) {
   return (
-    <div style={layoutStyle}>
+     <div style={layoutStyle}>
       <Header />
       {props.children}
     </div>
