@@ -1,0 +1,19 @@
+{
+  "name": "front_next",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "next"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.0.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-markdown": "^4.0.6"
+  }
+}
