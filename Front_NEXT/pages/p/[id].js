@@ -3,8 +3,21 @@ import fetch from 'isomorphic-unfetch';
 
 const Post = props => (
   <Layout>
-    <h1>{props.comic.serieTitle}#{props.comic.issueNumber}</h1>
+    <h1>{props.comic.serieTitle} #{props.comic.issueNumber}</h1>
     <p>Publisher: {props.comic.publisher}</p>
+    <div className='login'>
+          <form class="pure-form pure-form-stacked">
+            <label>{props.comic.serieTitle} #{props.comic.issueNumber}</label>
+
+            <input
+              type='text'
+              id='username'
+              name='username'
+            />
+
+            <button type='submit'>Login</button>
+          </form>
+        </div>
   </Layout>
 );
 
