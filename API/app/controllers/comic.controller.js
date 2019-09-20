@@ -65,10 +65,56 @@ exports.findOne = (req, res) => {
 
 // Update a comic identified by the comicId in the request
 exports.update = (req, res) => {
-
+    //Validate the request:
+    if(!req.body.serieTitle){
+        return res.status(400).send({
+            message: "Comic serieTitle can't be empty"
+        });
+    }
+    Comic.findByIdAndUpdate(req.params.comicId, {
+        serieTitle: req.body.serieTitle,
+        issueNumber: req.body.issueNumber,
+        publisher: req.body.publisher,
+    }, {new:true})
+    //The {new: true} option in the findByIdAndUpdate() method is used to return 
+    //the modified document to the then() function instead of the original.
+    .then(comic => {
+        if(!comic){
+            return res.status(404).send({
+                message: "Comic not found with id" + req.params.comicId
+            });
+        }
+        res.send(comic);
+    }).catch(err => {
+        if(err.kind === 'ObjectId'){
+            return res.status(404).send({
+                message: "Comic not found with id" + req.params.comicId
+            });
+        }
+        return res.status(500).send({
+            message: "Error updating comic with id" + req.params.comicId
+        })
+    })
 };
 
 // Delete a comic with the specified comicId in the request
 exports.delete = (req, res) => {
-
+    Comic.findByIdAndRemove(req.params.comicId)
+    .then(comic => {
+        if(!comic){
+            return res.status(404).send({
+                message: "Comic not found with id" + req.params.comicId
+        });
+    }
+    res.send({message: "Comic deleted successfully!"});
+    }).catch(err => {
+        if(err.kind === 'ObjectId'){
+            return res.status(404).send({
+                message: "Comic not found with id" + req.params.comicId
+            });
+        }
+        return res.status(500).send({
+            message: "Error deleting comic with id" + req.params.comicId
+        })
+    })
 };
