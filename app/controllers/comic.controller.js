@@ -21,7 +21,7 @@ exports.create = (req, res) => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Error creating the note"
+            message: err.message || "Error creating the comic"
         });
     });
 
@@ -34,7 +34,7 @@ exports.findAll = (req, res) => {
         res.send(comics);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while retrieving notes."
+            message: err.message || "Some error occurred while retrieving comics."
         });
     });
 };
