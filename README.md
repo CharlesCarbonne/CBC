@@ -4,6 +4,6 @@
 Run API:
 node server.js
 
-Run front:
-npm start
+Or with docker:
+docker-compose up
 ```
