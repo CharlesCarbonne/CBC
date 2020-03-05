@@ -12,7 +12,7 @@ class ComicList extends React.Component {
   }
 
   componentDidMount() {
-    const apiUrl = 'http://localhost:6666/comics';
+    const apiUrl = 'http://localhost:3001/comics';
 
     fetch(apiUrl)
       .then(res => res.json())

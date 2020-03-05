@@ -27,7 +27,7 @@ class App extends Component {
     if(this.state.isEditComic){
       apiUrl = 'http://localhost/dev/tcxapp/reactapi/editComic';
     } else {
-      apiUrl = 'http://localhost:6666/comics/';
+      apiUrl = 'http://localhost:3001/comics/';
     }
 
     const myHeaders = new Headers();
@@ -59,7 +59,7 @@ class App extends Component {
 
   editComic = comicId => {
 
-    const apiUrl = 'http://localhost:6666/dev/tcxapp/reactapi/getComic';
+    const apiUrl = 'http://localhost:3001/dev/tcxapp/reactapi/getComic';
     const formData = new FormData();
     formData.append('comicId', comicId);
 
