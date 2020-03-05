@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded());
 
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
 
@@ -40,6 +42,6 @@ app.get('/', (req, res) => {
 
 require ('./app/routes/comic.routes.js') (app);
 
-app.listen(3001, () => {
-    console.log("Server listening on port 3001");
+app.listen(6666, () => {
+    console.log("Server listening on port 6666");
 })
