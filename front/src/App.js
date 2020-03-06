@@ -31,14 +31,17 @@ class App extends Component {
     }
 
     const myHeaders = new Headers();
-    myHeaders.append('Accept', 'application/json')
+    myHeaders.append('Accept', 'application/json');
     myHeaders.append('Content-Type', 'application/json');
     
 
     const options = {
       method: 'POST',
-      body: JSON.stringify(data),
-      myHeaders
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     };
 
     fetch(apiUrl, options)
