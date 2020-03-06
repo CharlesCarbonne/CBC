@@ -10,7 +10,7 @@ services:
         restart: always
         build: ./api
         ports: 
-            - '6666:6666'
+            - '3001:3001'
         links: 
             - mongo
     front:

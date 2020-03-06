@@ -94,7 +94,7 @@ class App extends Component {
     return (
       <div className="App">
         <Container>
-          <h1 style={{textAlign:'center'}}>React Tutorial</h1>
+          <h1 style={{textAlign:'center'}}>CBC</h1>
           {!this.state.isAddComic && <Button variant="primary" onClick={() => this.onCreate()}>Add Comic</Button>}
           {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
           {!this.state.isAddComic && <ComicList editComic={this.editComic}/>}

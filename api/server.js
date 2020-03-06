@@ -1,16 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-// Parse URL-encoded bodies (as sent by HTML forms)
-app.use(express.urlencoded());
-
-// Parse JSON bodies (as sent by API clients)
-app.use(express.json());
+var port = 3001
 
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -42,6 +40,6 @@ app.get('/', (req, res) => {
 
 require ('./app/routes/comic.routes.js') (app);
 
-app.listen(3001, () => {
-    console.log("Server listening on port 3001");
+app.listen(port, () => {
+    console.log("Server listening on port "+port);
 })
