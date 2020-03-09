@@ -1,5 +1,6 @@
 # CBC
 
+This is a little project to learn mern stack & docker/docker-compose. And to try to have a cool manager for my comics.
 
 Run the app:
 ```
