@@ -45,6 +45,7 @@ class ComicList extends React.Component {
             response: result,
             comics: comics.filter(comic => comic.id !== comicId)
           });
+          window.location.reload(false)
         },
         (error) => {
           this.setState({ error });
