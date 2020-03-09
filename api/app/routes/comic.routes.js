@@ -14,5 +14,5 @@ module.exports = (app) => {
     app.put('/comics/:comicId', comics.update);
 
     // Delete a Note with noteId
-    app.delete('/comics/:comicId', comics.delete);
+    app.delete('/comics/delete/:comicId', comics.delete);
 }

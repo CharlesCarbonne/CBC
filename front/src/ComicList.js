@@ -31,16 +31,13 @@ class ComicList extends React.Component {
   deleteComic(comicId) {
     const { comics } = this.state;
 
-    const apiUrl = 'http://localhost/comics/';
-    const formData = new FormData();
-    formData.append('comicId', comicId);
+    const apiUrl = 'http://localhost:3001/comics/delete/';
 
-    const options = {
-      method: 'POST',
-      body: formData
-    }
+    const requestOptions = {
+      method: 'DELETE'
+    };
 
-    fetch(apiUrl, options)
+    fetch(apiUrl + comicId, requestOptions)
       .then(res => res.json())
       .then(
         (result) => {
@@ -72,9 +69,6 @@ class ComicList extends React.Component {
               <tr>
                 <th>#ID</th>
                 <th>Comic Name</th>
-                <th>SKU</th>
-                <th>Price</th>
-                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -82,8 +76,6 @@ class ComicList extends React.Component {
                 <tr key={comic._id}>
                   <td>{comic._id}</td>
                   <td>{comic.serieTitle}</td>
-                  <td>{comic.sku}</td>
-                  <td>{comic.price}</td>
                   <td>
                     <Button variant="info" onClick={() => this.props.editComic(comic._id)}>Edit</Button>
                     &nbsp;<Button variant="danger" onClick={() => this.deleteComic(comic._id)}>Delete</Button>
