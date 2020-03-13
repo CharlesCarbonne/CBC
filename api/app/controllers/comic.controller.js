@@ -118,3 +118,14 @@ exports.delete = (req, res) => {
         })
     })
 };
+
+exports.generateTestData = () => {
+    for(i = 1; i <= 50; i++){
+        //Create the comic
+    const comic = new Comic({
+        serieTitle: i,
+    });
+
+    comic.save()
+    }
+}

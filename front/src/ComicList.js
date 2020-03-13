@@ -11,7 +11,11 @@ class ComicList extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount(){
+    this.getComics();
+  }
+
+  getComics() {
     const apiUrl = 'http://localhost:3001/comics';
 
     fetch(apiUrl)
@@ -29,8 +33,6 @@ class ComicList extends React.Component {
   }
 
   deleteComic(comicId) {
-    const { comics } = this.state;
-
     const apiUrl = 'http://localhost:3001/comics/delete/';
 
     const requestOptions = {
@@ -41,11 +43,7 @@ class ComicList extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
-          this.setState({
-            response: result,
-            comics: comics.filter(comic => comic.id !== comicId)
-          });
-          window.location.reload(false)
+          this.getComics(result)
         },
         (error) => {
           this.setState({ error });
@@ -79,7 +77,7 @@ class ComicList extends React.Component {
                   <td>{comic.serieTitle}</td>
                   <td>
                     <Button variant="info" onClick={() => this.props.editComic(comic._id)}>Edit</Button>
-                    &nbsp;<Button variant="danger" onClick={() => this.deleteComic(comic._id)}>Delete</Button>
+                    &nbsp;<Button variant="danger" onClick={() => this.deleteComic(comic._id) }>Delete</Button>
                   </td>
                 </tr>
               ))}

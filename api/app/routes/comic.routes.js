@@ -15,4 +15,6 @@ module.exports = (app) => {
 
     // Delete a Note with noteId
     app.delete('/comics/delete/:comicId', comics.delete);
+
+    app.get('/createData', comics.generateTestData);
 }
