@@ -38,7 +38,7 @@ class AddComic extends React.Component {
   render() {
 
     let pageTitle;
-    if(this.state.id) {
+    if(this.state._id) {
       pageTitle = <h2>Edit Comic</h2>
     } else {
       pageTitle = <h2>Add Comic</h2>
